@@ -2,8 +2,14 @@ from application import app_instance
 from flask import render_template, request
 
 @app_instance.route('/')
-@app_instance.route('/index')
+# def test():
+#     return '/'
+@app_instance.route('/home')
+# def home():
+#     return 'home'
 @app_instance.route('/handle_data', methods =['POST'])
+# def handle():
+#     return 'handle'
 def handle_data():
     import io
     import os
@@ -14,7 +20,13 @@ def handle_data():
 
     #return request.form['projectFilepath']
     #project = request.form['projectFilepath']
-    #return render_template('hacks.html')
+    if request.method == 'POST':
+        return 'HI'
+    # if request.form.get('audiofile'):
+    #     projectpath = request.form.get('audiofile')
+    #     return sample_recognize(projectpath)
+    
+    return render_template('browser.html')
     def sample_recognize(local_file_path):
         """
         Transcribe a short audio file using synchronous speech recognition
