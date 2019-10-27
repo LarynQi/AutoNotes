@@ -24,7 +24,7 @@ def handle_data():
         """
 
         client = speech_v1.SpeechClient()
-        audio_channel_count = 2
+        audio_channel_count = 2 #needs to be pushed
 
         file_name = os.path.join(
             os.path.dirname(__file__),

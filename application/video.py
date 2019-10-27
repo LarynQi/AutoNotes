@@ -24,7 +24,7 @@ def index():
 
         client = speech.SpeechClient()
 
-        audio_channel_count = 2 
+        audio_channel_count = 2 #git needs to be pushed
 
         with open(file_name, 'rb') as audio_file:
             content = audio_file.read()
