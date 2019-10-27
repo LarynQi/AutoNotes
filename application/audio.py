@@ -1,18 +1,55 @@
-from application import app_instance
-from flask import render_template, request
 
+
+import os
+#import magic
+import urllib.request
+from application import app_instance
+from flask import Flask, flash, request, redirect, render_template
+from werkzeug.utils import secure_filename
+
+
+UPLOAD_FOLDER = '/Users/larynqi/desktop/uploads'
+
+app_instance.secret_key = "secret key"
+app_instance.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', ])
+
+def allowed_file(filename):
+	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+	
 @app_instance.route('/')
-# def test():
-#     return '/'
-@app_instance.route('/home')
-# def home():
-#     return 'home'
+def upload_form():
+	return render_template('upload.html')
+
+@app_instance.route('/', methods=['POST'])
+def upload_file():
+	if request.method == 'POST':
+        # check if the post request has the file part
+		if 'file' not in request.files:
+			flash('No file part')
+			return redirect(request.url)
+		file = request.files['file']
+		if file.filename == '':
+			flash('No file selected for uploading')
+			return redirect(request.url)
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			file.save(os.path.join(app_instance.config['UPLOAD_FOLDER'], filename))
+			flash('File successfully uploaded')
+			return redirect('/')
+		else:
+			flash('Allowed file types are txt, pdf, png, jpg, jpeg, gif')
+			return redirect(request.url)
+
+if __name__ == "__main__":
+    app_instance.run()
+
 @app_instance.route('/handle_data', methods =['POST'])
 # def handle():
 #     return 'handle'
 def handle_data():
     import io
-    import os
 
     from google.cloud import speech_v1
     from google.cloud.speech_v1 import enums
@@ -21,7 +58,7 @@ def handle_data():
     #return request.form['projectFilepath']
     #project = request.form['projectFilepath']
     if request.method == 'POST':
-        return 'HI'
+        print(hi)
     # if request.form.get('audiofile'):
     #     projectpath = request.form.get('audiofile')
     #     return sample_recognize(projectpath)
@@ -75,3 +112,58 @@ def handle_data():
         return alternative.transcript
     #return "Hello, World hehe!"
     return sample_recognize('output_short.flac')
+# from application import app_instance
+# from flask import render_template, flash, request, redirect, url_for, send_from_directory
+# from werkzeug.utils import secure_filename
+# import os
+
+# UPLOAD_FOLDER = '/Users/larynqi/uploads'
+# ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp4'}
+
+# app_instance.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# def allowed_file(filename):
+#     return '.' in filename and \
+#            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# @app_instance.route('/', methods=['GET', 'POST'])
+# def upload_file():
+#     if request.method == 'POST':
+#         # check if the post request has the file part
+#         if 'file' not in request.files:
+#             flash('No file part')
+#             return redirect(request.url)
+#         file = request.files['file']
+#         # if user does not select file, browser also
+#         # submit an empty part without filename
+#         if file.filename == '':
+#             flash('No selected file')
+#             return redirect(request.url)
+#         if file and allowed_file(file.filename):
+#             filename = secure_filename(file.filename)
+#             file.save(os.path.join(app_instance.config['UPLOAD_FOLDER'], filename))
+#             return redirect(url_for('uploaded_file',
+#                                     filename=filename))
+#     return '''
+#     <!doctype html>
+#     <title>Upload new File</title>
+#     <h1>Upload new File</h1>
+#     <form method=post enctype=multipart/form-data>
+#       <input type=file name=file>
+#       <input type=submit value=Upload>
+#     </form>
+#     '''
+    # return render_template('hacks.html')
+
+# @app_instance.route('/Users/larynqi/uploads/<filename>')
+# def uploaded_file(filename):
+#     return send_from_directory(app_instance.config['UPLOAD_FOLDER'],
+#                                filename)
+#@app_instance.route('/')
+# def test():
+#     return '/'
+# @app_instance.route('/home')
+# # def home():
+# #     return 'home'
+
+
