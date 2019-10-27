@@ -36,6 +36,7 @@ def handle_data():
         """
 
         client = speech_v1.SpeechClient()
+        audio_channel_count = 2
 
         file_name = os.path.join(
             os.path.dirname(__file__),
@@ -46,7 +47,7 @@ def handle_data():
         language_code = "en-US"
 
         # Sample rate in Hertz of the audio data sent
-        sample_rate_hertz = 16000
+        sample_rate_hertz = 44100
 
         # Encoding of audio data sent. This sample sets this explicitly.
         # This field is optional for FLAC and WAV audio formats.
@@ -55,9 +56,10 @@ def handle_data():
             "language_code": language_code,
             "sample_rate_hertz": sample_rate_hertz,
             "encoding": encoding,
+            "audio_channel_count": audio_channel_count
         }
 
-        
+
         with io.open(file_name, "rb") as f:
             content = f.read()
         audio = {"content": content}
@@ -72,4 +74,4 @@ def handle_data():
             print(u"Transcript: {}".format(alternative.transcript))
         return alternative.transcript
     #return "Hello, World hehe!"
-    return sample_recognize('nisha_test.flac')
+    return sample_recognize('output_short.flac')
