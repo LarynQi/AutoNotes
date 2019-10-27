@@ -1,3 +1,33 @@
+
+  @font-face { font-family: magical markers; src: url('Magical Markers.ttf'); }
+  h1 {
+     font-family: magical markers
+  }
+
+body {
+  background-color: lightblue;
+}
+.auto {
+  font-family: 'Fredoka One', cursive;
+}
+.input_file {
+  color: black;
+}
+
+h1 {
+  display: block;
+  font-size: 5em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0%;
+  font-weight: bold;
+  font-family: magical markers;
+}
+
+#logo{
+  height: 25%;
+  width: 25%;
+}
 #custom-button {
   padding: 10px;
   color: white;
