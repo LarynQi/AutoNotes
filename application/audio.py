@@ -25,8 +25,8 @@ def handle_data():
     # if request.form.get('audiofile'):
     #     projectpath = request.form.get('audiofile')
     #     return sample_recognize(projectpath)
-    
-    return render_template('browser.html')
+
+    return render_template('hacks.html')
     def sample_recognize(local_file_path):
         """
         Transcribe a short audio file using synchronous speech recognition
