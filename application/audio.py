@@ -1,9 +1,10 @@
 from application import app_instance
-from flask import render_template
+from flask import render_template, request
 
 @app_instance.route('/')
 @app_instance.route('/index')
-def upload():
+@app_instance.route('/handle_data', methods =['POST'])
+def handle_data():
     import io
     import os
 
@@ -11,7 +12,9 @@ def upload():
     from google.cloud.speech_v1 import enums
     from google.cloud.speech_v1 import types
 
-    return render_template('hacks.html')
+    return request.form['projectFilepath']
+    #project = request.form['projectFilepath']
+    #return render_template('hacks.html')
     def sample_recognize(local_file_path):
         """
         Transcribe a short audio file using synchronous speech recognition
