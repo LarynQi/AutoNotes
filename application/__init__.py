@@ -2,4 +2,4 @@ from flask import Flask
 
 app_instance = Flask(__name__)
 
-from application import audio
+from application import long_audio
