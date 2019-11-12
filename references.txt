@@ -1,0 +1,31 @@
+# REFERENCES
+
+HTML + Flask:
+    https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
+
+    https://stackoverflow.com/questions/12179593/flask-post-error-405-method-not-allowed
+
+    https://stackoverflow.com/questions/11556958/sending-data-from-html-form-to-a-python-script-in-flask?fbclid=IwAR39GJgKLAQ_FptUFy6kBVjekbHdB8GnW0SokUZOxesUaQvOrKNJUvuZ-yU
+
+    https://stackoverflow.com/questions/11556958/sending-data-from-html-form-to-a-python-script-in-flask?fbclid=IwAR03JwPAvdkjAUvpWHKcU-S3v_qOFwNSYEFB-cjxbn-R2siifqygU2lRXjI
+
+    http://flask.palletsprojects.com/en/1.0.x/patterns/fileuploads/
+
+    http://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/?fbclid=IwAR3OIXmB846cVRVjP4B6y1rLVVCq5goqldvcoWFq-e3qj0IzkesgCBlrYEA
+
+    https://www.roytuts.com/python-flask-file-upload-example/
+
+API Demo:
+    https://github.com/sararob/ml-talk-demos
+
+API Tutorials:
+    https://cloud.google.com/speech-to-text/docs/multi-channel
+
+    https://cloud.google.com/speech-to-text/docs/error-messages?authuser=1
+
+    https://cloud.google.com/speech-to-text/docs/video-model?authuser=1
+
+    https://cloud.google.com/speech-to-text/docs/async-recognize?authuser=1
+
+Software:
+    https://www.ffmpeg.org/ffmpeg.html
