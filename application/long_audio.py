@@ -22,7 +22,7 @@ def index():
         """
 
         client = speech_v1.SpeechClient()
-        audio_channel_count = 2
+        audio_channel_count = 1
         #storage_uri = 'gs://cloud-samples-data/speech/brooklyn_bridge.raw'
 
         # file_name = os.path.join(
@@ -51,11 +51,31 @@ def index():
 
         print(u"Waiting for operation to complete...")
         response = operation.result()
-
+        stringResult = ""
+        original = ""
         for result in response.results:
             # First alternative is the most probable result
             alternative = result.alternatives[0]
-            print(u"Transcript: {}".format(alternative.transcript))
+            # print(u"Transcript: {}".format(alternative.transcript))
+            msg = (str(alternative.transcript))
+            original += msg
+            
+            #fix unwarranted leading spaces
+            if msg[0] == " ":
+                msg = msg[1:]
+
+            #if first word is "and," remove it"
+            if (msg[0] == "a" or msg[0] == "A") and msg[1] == "n" and msg[2] == "d":
+                msg = msg[3:]
+                msg = msg[0].upper() + msg[1:]
+                stringResult += "•" + msg + "\n \n"
+            else:
+                msg = msg[0].upper() + msg[1:]
+                stringResult += "• " + msg + "\n \n"
+            
+            
         #return alternative.transcript
-        return str(response.results)
-    return long_running_recognize('gs://audio_cal/output_2.flac')
+        with open("/Users/larynqi/desktop/uploads/blank.txt", "w") as f:
+            print(stringResult, file=f)
+        return original
+    return long_running_recognize('gs://audio_cal/61a_test.flac')

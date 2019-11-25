@@ -48,7 +48,7 @@ def allowed_file(filename):
 	
 @app_instance.route('/')
 def upload_form():
-    return sample_recognize('output_short.flac')
+    #return sample_recognize('output_short.flac')
     return render_template('upload.html')
 
 @app_instance.route('/', methods=['POST'])
@@ -66,7 +66,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app_instance.config['UPLOAD_FOLDER'], filename))
             flash('File successfully uploaded')
-            return sample_recognize('output_short.flac')
+            #return sample_recognize('output_short.flac')
             return redirect('/')
         else:
             flash('Allowed file types are txt,pdf, png, jpg, jpeg, gif, flac')
