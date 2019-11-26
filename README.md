@@ -1,6 +1,6 @@
 # AutoNotes
 
-Welcome to AutoNotes!
+Welcome to AutoNotes, a program that (Auto)matically turns your video lectures to (Notes)!
 
 ## Resources
 
