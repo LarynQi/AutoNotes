@@ -29,3 +29,6 @@ API Tutorials:
 
 Software:
     https://www.ffmpeg.org/ffmpeg.html
+
+Downloading:
+    https://www.reddit.com/r/learnpython/comments/99wr9d/python_flask_how_can_a_visitor_download_a_file/
