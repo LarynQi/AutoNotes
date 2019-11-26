@@ -12,6 +12,20 @@ def index():
     from google.cloud.speech_v1 import enums
     from google.cloud.speech_v1 import types
 
+    def find_word(message, word):
+        for i in range(len(message)):
+            if message[i] == word[0]:
+                for j in range(1, len(word)):
+                    if i + j > len(message):
+                        break
+                    if message[i + j] == word[j]:
+                        if j == len(word) - 1:
+                            return True
+                    else:
+                        break
+        return False
+            
+
     def long_running_recognize(storage_uri):
         """
         Transcribe long audio file from Cloud Storage using asynchronous speech
