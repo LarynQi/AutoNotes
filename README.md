@@ -9,5 +9,6 @@ Welcome to AutoNotes, a program that (Auto)matically turns your video lectures t
 * JavaScript
 * [Flask](https://www.fullstackpython.com/flask.html)
 * [Google Cloud Speech-to-Text API](https://cloud.google.com/speech-to-text/)
+* [FFmpeg](https://www.ffmpeg.org/)
 
 
