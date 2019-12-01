@@ -2,19 +2,20 @@ import os
 #import magic
 import urllib.request
 from application import app_instance
-from flask import Flask, flash, request, redirect, render_template
+from flask import Flask, flash, request, redirect, render_template, Response
 from werkzeug.utils import secure_filename
 import io
 from google.cloud import speech_v1
 from google.cloud.speech_v1 import enums
 from google.cloud.speech_v1 import types
 
-UPLOAD_FOLDER = '/Users/larynqi/desktop/uploads'
+# UPLOAD_FOLDER = '/Users/larynqi/desktop/uploads'
+UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__))
 
 app_instance.secret_key = "secret key"
 app_instance.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'flac'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'flac', 'wav'])
 
 def sample_recognize(local_file_path):
     client = speech_v1.SpeechClient()
@@ -48,7 +49,7 @@ def allowed_file(filename):
 	
 @app_instance.route('/')
 def upload_form():
-    return sample_recognize('output_short.flac')
+    #return sample_recognize('output_short.flac')
     return render_template('upload.html')
 
 @app_instance.route('/', methods=['POST'])
@@ -66,7 +67,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app_instance.config['UPLOAD_FOLDER'], filename))
             flash('File successfully uploaded')
-            return sample_recognize('output_short.flac')
+            #return sample_recognize('output_short.flac')
             return redirect('/')
         else:
             flash('Allowed file types are txt,pdf, png, jpg, jpeg, gif, flac')
@@ -74,6 +75,14 @@ def upload_file():
 if __name__ == "__main__":
     app_instance.run()
 
+@app_instance.route('/download')
+def download():
+    THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+    my_file = os.path.join(THIS_FOLDER, 'blank.txt')
+    file = open(my_file, "r")
+    returnfile = file.read().encode("utf-8")
+    file.close()
+    return Response(returnfile, mimetype="text/csv", headers={"Content-disposition": "attachment; filename=Notes!.txt"})
 # @app_instance.route('/handle_data', methods =['POST'])
 # # def handle():
 # #     return 'handle'
