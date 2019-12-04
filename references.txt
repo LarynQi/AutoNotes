@@ -32,3 +32,6 @@ Software:
 
 Downloading:
     https://www.reddit.com/r/learnpython/comments/99wr9d/python_flask_how_can_a_visitor_download_a_file/
+
+Bash Environment Variables:
+    https://stackoverflow.com/questions/23503817/bash-users-myname-bash-profile-permission-denied/23504305
