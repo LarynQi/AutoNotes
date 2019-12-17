@@ -27,6 +27,9 @@ API Tutorials:
 
     https://cloud.google.com/speech-to-text/docs/async-recognize?authuser=1
 
+API Debugging:
+    https://stackoverflow.com/questions/44397506/importerror-no-module-named-google-cloud
+    
 Software:
     https://www.ffmpeg.org/ffmpeg.html
 
